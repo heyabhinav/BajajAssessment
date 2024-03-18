@@ -22,7 +22,7 @@ const template = {
 
 app.post('/bfhl', (req, res)=>{
   const {data} = req.body;
-  const response = template;
+  const response = structuredClone(template);
   
   for(var i=0; i<data.length; i++){
     var ele = parseInt(data[i]);
