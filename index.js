@@ -36,11 +36,12 @@ app.post('/bfhl', (req, res)=>{
           response.odd_numbers.push(ele);
         }
       }
-    }   
-  }catch{
+    }  
+    res.json(response);
+  }catch(error){
     response.is_success = false;
+    res.json(response);
   }
-  res.json(response);
 })
 
 app.listen(8000, () => {
