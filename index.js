@@ -23,19 +23,22 @@ const template = {
 app.post('/bfhl', (req, res)=>{
   const {data} = req.body;
   const response = structuredClone(template);
-  
-  for(var i=0; i<data.length; i++){
-    var ele = parseInt(data[i]);
-    if(isNaN(ele)){
-      response.alphebets.push(data[i].toUpperCase());
-    }else{
-      if(ele%2==0){
-        response.even_numbers.push(ele);
+
+  try{
+    for(var i=0; i<data.length; i++){
+      var ele = parseInt(data[i]);
+      if(isNaN(ele)){
+        response.alphebets.push(data[i].toUpperCase());
       }else{
-        response.odd_numbers.push(ele);
+        if(ele%2==0){
+          response.even_numbers.push(ele);
+        }else{
+          response.odd_numbers.push(ele);
+        }
       }
-    }
-    
+    }   
+  }catch{
+    response.is_success = false;
   }
   res.json(response);
 })
